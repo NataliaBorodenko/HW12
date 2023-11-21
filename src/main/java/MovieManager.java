@@ -1,10 +1,11 @@
+
 public class MovieManager {
 
-    private String[] movies = new String[0];
+    private ListMovie[] movies = new ListMovie[0];
     private int limit;
 
     public MovieManager() {
-        this.limit = 5;
+        limit = 5;
 
     }
 
@@ -13,8 +14,8 @@ public class MovieManager {
 
     }
 
-    public void addMovie(String movie) {
-        String[] tmp = new String[movies.length + 1];
+    public void addMovie(ListMovie movie) {
+        ListMovie[] tmp = new ListMovie[movies.length + 1];
         for (int i = 0; i < movies.length; i++) {
             tmp[i] = movies[i];
         }
@@ -23,23 +24,24 @@ public class MovieManager {
 
     }
 
-    public String[] findAll() {
+    public ListMovie[] findAll() {
         return movies;
     }
 
-    public String[] findLast() {
+    public ListMovie[] findLast() {
+        ListMovie[] movies = findAll();
+        ListMovie[] resultLength;
 
-        int resultLength;
-        if (movies.length < limit) {
-            resultLength = movies.length;
+        if (limit < movies.length) {
+            resultLength = new ListMovie[limit];
         } else {
-            resultLength = limit;
+            resultLength = new ListMovie[movies.length];
         }
-        String[] tmp = new String[resultLength];
+
         for (int i = 0; i < movies.length; i++) {
-            tmp[i] = movies[movies.length - 1 - i];
+            resultLength[i] = movies[movies.length - 1 - i];
         }
-        return tmp;
+        return resultLength;
     }
 }
 
